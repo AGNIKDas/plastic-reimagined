@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery — Approved Community Creations | Plastic Reimagined{% endblock %}
+
+{% block content %}
+<section class="hero-section" style="padding-bottom: 2rem;">
+  <div class="hero-tagline">
+    <span class="badge badge-neutral">
+      <span class="pulse-dot"></span> Destination 04 &bull; Community Showcase
+    </span>
+  </div>
+
+  <h1 class="hero-title">{{ destination_name }}</h1>
+  <p class="hero-desc">{{ destination_description }}</p>
+
+  <div class="hero-cta-group">
+    <a href="{% url 'core:index' %}" class="btn btn-outline">&larr; Return to Platform Hub</a>
+  </div>
+</section>
+
+<div class="glass-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
+  <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+    <span class="badge badge-eco">Application Scope</span>
+    <h3 style="color: var(--color-text-main); font-size: 1.25rem;">Community Showcase & Moderation Queue</h3>
+  </div>
+  <p style="color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+    This application module is reserved for visitor submission ingestion (without account requirements) and an approval moderation workflow backed by the Django admin site.
+  </p>
+
+  <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; color: var(--color-text-secondary); font-size: 0.95rem;">
+    <li style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="color: var(--color-emerald-400);">&check;</span> Modular Django app: <code style="font-family: var(--font-mono); color: var(--color-cyan-400);">gallery</code>
+    </li>
+    <li style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="color: var(--color-emerald-400);">&check;</span> Configured namespace: <code style="font-family: var(--font-mono); color: var(--color-cyan-400);">gallery:index</code>
+    </li>
+    <li style="display: flex; align-items: center; gap: 0.5rem;">
+      <span style="color: var(--color-emerald-400);">&check;</span> Anonymous visitor submission ready with staff-only moderation gates
+    </li>
+  </ul>
+</div>
+{% endblock %}

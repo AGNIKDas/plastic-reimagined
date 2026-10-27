@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Plastic Reimagined — Transforming Discarded Bottles into Creative Expression{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" id="heroVision">
+  <div class="hero-tagline">
+    <span class="badge badge-eco">
+      <span class="pulse-dot"></span> Environmental Creativity Platform
+    </span>
+  </div>
+
+  <h1 class="hero-title">
+    See Discarded Bottles as Canvases for Imagination
+  </h1>
+
+  <p class="hero-desc">
+    Plastic Reimagined bridges environmental consciousness with interactive craft. Explore the circular lifecycle of polymers, invent upcycled bottle art in our creative studio, and share ideas across a global gallery.
+  </p>
+
+  <div class="hero-cta-group">
+    <a href="{% url 'studio:index' %}" class="btn btn-primary btn-lg" id="btnExploreCreate">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+        <path d="M2 2l7.586 7.586"></path>
+      </svg>
+      Destination: Create
+    </a>
+    <a href="{% url 'catalogue:index' %}" class="btn btn-outline btn-lg" id="btnExploreDiscover">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      Destination: Discover
+    </a>
+    <a href="{% url 'blog:index' %}" class="btn btn-workshop btn-lg" id="btnExploreRead">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+      </svg>
+      Destination: Read
+    </a>
+  </div>
+</section>
+
+<!-- Platform Destinations Section -->
+<section class="destinations-section" id="platformDestinations" aria-labelledby="destinationsHeading">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title" id="destinationsHeading">Platform Architecture & Destinations</h2>
+      <p class="section-subtitle">Dedicated modular applications structured for sustainable feature scaling.</p>
+    </div>
+    <span class="badge badge-neutral">4 Independent Modules</span>
+  </div>
+
+  <div class="destinations-grid">
+    {% for dest in destinations %}
+      <article class="glass-card destination-card">
+        <div class="card-top">
+          <span class="badge {% if forloop.counter == 1 %}badge-eco{% elif forloop.counter == 2 %}badge-discovery{% elif forloop.counter == 3 %}badge-workshop{% else %}badge-neutral{% endif %}">
+            {{ dest.tag }}
+          </span>
+          <h3 class="card-title">{{ dest.name }}</h3>
+          <p class="card-text">{{ dest.description }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="{% url dest.url_name %}" class="btn btn-outline btn-sm">
+            Inspect Application &rarr;
+          </a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Foundation Status Dashboard -->
+<section class="status-dashboard" id="foundationStatus" aria-labelledby="statusHeading">
+  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+    <div>
+      <h3 id="statusHeading" style="font-size:1.35rem; color:var(--color-text-main);">
+        Architectural Foundation Status
+      </h3>
+      <p style="color:var(--color-text-secondary); font-size:0.92rem; margin-top:0.25rem;">
+        Baseline verification parameters for local development and future production deployment.
+      </p>
+    </div>
+    <span class="badge badge-eco">
+      <span class="pulse-dot"></span> Foundation Verified
+    </span>
+  </div>
+
+  <div class="status-grid">
+    <div class="status-item">
+      <div class="status-label">Backend Engine</div>
+      <div class="status-value">Django 5.1</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Active Database</div>
+      <div class="status-value">SQLite (Dev)</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Production Target</div>
+      <div class="status-value" style="color:var(--color-cyan-400);">PostgreSQL Ready</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Authentication Mode</div>
+      <div class="status-value" style="color:var(--color-workshop-amber);">Open Visitor + Admin</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Frontend Frameworks</div>
+      <div class="status-value" style="color:var(--color-bio-lime);">Vanilla HTML/CSS/JS</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Environment Config</div>
+      <div class="status-value">
+        {% if debug_mode %}DEBUG (Local){% else %}Production{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
